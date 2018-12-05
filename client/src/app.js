@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const listItemFormView = new ListItemFormView(listItemForm);
   listItemFormView.bindEvents();
 
-  const listOfItems = document.querySelector('#games');
+  const listOfItems = document.querySelector('#items');
   const listItemsGridView = new ListItemsGridView(listOfItems);
   listItemsGridView.bindEvents();
 
