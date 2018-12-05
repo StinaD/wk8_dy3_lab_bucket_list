@@ -1,7 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const ListItemView = function(container) {
+const ListItemView = function(container, id) {
   this.container = container;
+  this.id = id;
 };
 
 ListItemView.prototype.render = function (item) {
@@ -25,6 +26,9 @@ ListItemView.prototype.render = function (item) {
 
   const deleteButton = this.createDeleteButton(item._id);
   div.appendChild(deleteButton);
+
+  const updateButton = this.createUpdateButton(item._id);
+  div.appendChild(updateButton);
 
   this.container.appendChild(div);
 
@@ -50,5 +54,19 @@ ListItemView.prototype.createDeleteButton = function (itemId) {
 
   return button;
 };
+
+ListItemView.prototype.createUpdateButton = function (itemId) {
+  const button = document.createElement('button');
+  button.classList.add('update-button');
+  button.value = itemId;
+  button.textContent = 'Update status';
+
+  button.addEventListener('click', (event) => {
+    PubSub.publish('ListItemView:item-status-update-clicked', event.target.value);
+  });
+
+  return button;
+};
+
 
 module.exports = ListItemView;

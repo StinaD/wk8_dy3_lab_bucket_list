@@ -13,8 +13,11 @@ ListItemsGridView.prototype.bindEvents = function () {
 
 ListItemsGridView.prototype.render = function (items) {
   this.container.innerHTML = '';
-  const itemView = new ListItemView(this.container);
-  items.forEach((item) => itemView.render(item));
+  items.forEach((item) => {
+    console.log(item);
+    const itemView = new ListItemView(this.container, item._id);
+    itemView.render(item)
+  });
 };
 
 
