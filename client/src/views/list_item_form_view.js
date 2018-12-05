@@ -14,8 +14,7 @@ ListItemFormView.prototype.bindEvents = function () {
 
 ListItemFormView.prototype.handleSubmit = function (event) {
   event.preventDefault();
-  const newItem = this.createItem(event.target)
-  console.log(newItem);
+  const newItem = this.createItem(event.target);
   PubSub.publish('ItemViewForm:item-submitted', newItem);
   event.target.reset();
 };
